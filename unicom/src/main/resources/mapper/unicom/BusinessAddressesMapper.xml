@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.unicom.mapper.BusinessAddressesMapper">
+    
+    <resultMap type="BusinessAddresses" id="BusinessAddressesResult">
+        <result property="id"    column="id"    />
+        <result property="requestedAddresses"    column="requested_addresses"    />
+        <result property="addressMask"    column="address_mask"    />
+        <result property="subnetMask"    column="subnet_mask"    />
+        <result property="networkAddress"    column="network_address"    />
+        <result property="gatewayAddress"    column="gateway_address"    />
+        <result property="usedAddress"    column="used_address"    />
+        <result property="freeAddress"    column="free_address"    />
+        <result property="broadcastAddress"    column="broadcast_address"    />
+        <result property="staticAddressRange"    column="static_address_range"    />
+        <result property="serviceCode"    column="service_code"    />
+    </resultMap>
+
+    <sql id="selectBusinessAddressesVo">
+        select id, requested_addresses, address_mask, subnet_mask, network_address, gateway_address, used_address, free_address, broadcast_address, static_address_range, service_code from business_addresses
+    </sql>
+
+    <select id="selectBusinessAddressesList" parameterType="BusinessAddresses" resultMap="BusinessAddressesResult">
+        <include refid="selectBusinessAddressesVo"/>
+        <where>  
+            <if test="requestedAddresses != null "> and requested_addresses = #{requestedAddresses}</if>
+            <if test="addressMask != null  and addressMask != ''"> and address_mask = #{addressMask}</if>
+            <if test="subnetMask != null  and subnetMask != ''"> and subnet_mask = #{subnetMask}</if>
+            <if test="networkAddress != null  and networkAddress != ''"> and network_address = #{networkAddress}</if>
+            <if test="gatewayAddress != null  and gatewayAddress != ''"> and gateway_address = #{gatewayAddress}</if>
+            <if test="usedAddress != null  and usedAddress != ''"> and used_address = #{usedAddress}</if>
+            <if test="freeAddress != null  and freeAddress != ''"> and free_address = #{freeAddress}</if>
+            <if test="broadcastAddress != null  and broadcastAddress != ''"> and broadcast_address = #{broadcastAddress}</if>
+            <if test="staticAddressRange != null  and staticAddressRange != ''"> and static_address_range = #{staticAddressRange}</if>
+            <if test="serviceCode != null  and serviceCode != ''"> and service_code = #{serviceCode}</if>
+        </where>
+    </select>
+    
+    <select id="selectBusinessAddressesById" parameterType="Long" resultMap="BusinessAddressesResult">
+        <include refid="selectBusinessAddressesVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertBusinessAddresses" parameterType="BusinessAddresses" useGeneratedKeys="true" keyProperty="id">
+        insert into business_addresses
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="requestedAddresses != null">requested_addresses,</if>
+            <if test="addressMask != null">address_mask,</if>
+            <if test="subnetMask != null">subnet_mask,</if>
+            <if test="networkAddress != null">network_address,</if>
+            <if test="gatewayAddress != null">gateway_address,</if>
+            <if test="usedAddress != null">used_address,</if>
+            <if test="freeAddress != null">free_address,</if>
+            <if test="broadcastAddress != null">broadcast_address,</if>
+            <if test="staticAddressRange != null">static_address_range,</if>
+            <if test="serviceCode != null">service_code,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="requestedAddresses != null">#{requestedAddresses},</if>
+            <if test="addressMask != null">#{addressMask},</if>
+            <if test="subnetMask != null">#{subnetMask},</if>
+            <if test="networkAddress != null">#{networkAddress},</if>
+            <if test="gatewayAddress != null">#{gatewayAddress},</if>
+            <if test="usedAddress != null">#{usedAddress},</if>
+            <if test="freeAddress != null">#{freeAddress},</if>
+            <if test="broadcastAddress != null">#{broadcastAddress},</if>
+            <if test="staticAddressRange != null">#{staticAddressRange},</if>
+            <if test="serviceCode != null">#{serviceCode},</if>
+         </trim>
+    </insert>
+
+    <update id="updateBusinessAddresses" parameterType="BusinessAddresses">
+        update business_addresses
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="requestedAddresses != null">requested_addresses = #{requestedAddresses},</if>
+            <if test="addressMask != null">address_mask = #{addressMask},</if>
+            <if test="subnetMask != null">subnet_mask = #{subnetMask},</if>
+            <if test="networkAddress != null">network_address = #{networkAddress},</if>
+            <if test="gatewayAddress != null">gateway_address = #{gatewayAddress},</if>
+            <if test="usedAddress != null">used_address = #{usedAddress},</if>
+            <if test="freeAddress != null">free_address = #{freeAddress},</if>
+            <if test="broadcastAddress != null">broadcast_address = #{broadcastAddress},</if>
+            <if test="staticAddressRange != null">static_address_range = #{staticAddressRange},</if>
+            <if test="serviceCode != null">service_code = #{serviceCode},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBusinessAddressesById" parameterType="Long">
+        delete from business_addresses where id = #{id}
+    </delete>
+
+    <delete id="deleteBusinessAddressesByIds" parameterType="String">
+        delete from business_addresses where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

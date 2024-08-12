@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.unicom.mapper.IpranEquipmentMapper">
+    
+    <resultMap type="IpranEquipment" id="IpranEquipmentResult">
+        <result property="id"    column="id"    />
+        <result property="device"    column="device"    />
+        <result property="frame"    column="frame"    />
+        <result property="slot"    column="slot"    />
+        <result property="subCard"    column="sub_card"    />
+        <result property="port"    column="port"    />
+        <result property="subPort"    column="sub_port"    />
+        <result property="aggregationPort"    column="aggregation_port"    />
+        <result property="transmissionArea"    column="transmission_area"    />
+        <result property="transmissionElementId"    column="transmission_element_id"    />
+        <result property="transmissionElementName"    column="transmission_element_name"    />
+        <result property="transmissionElementMgmtIp"    column="transmission_element_mgmt_ip"    />
+        <result property="accessDeviceType"    column="access_device_type"    />
+        <result property="transmissionVendor"    column="transmission_vendor"    />
+        <result property="workOrderNumber"    column="work_order_number"    />
+        <result property="serviceCategory"    column="service_category"    />
+        <result property="serviceNumber"    column="service_number"    />
+        <result property="circuitId"    column="circuit_id"    />
+        <result property="serviceType"    column="service_type"    />
+        <result property="circuitBandwidth"    column="circuit_bandwidth"    />
+        <result property="aEndCustomerName"    column="a_end_customer_name"    />
+        <result property="aEndAccessDeviceInterface"    column="a_end_access_device_interface"    />
+        <result property="subPortNumber"    column="sub_port_number"    />
+        <result property="aEndIpv4Address"    column="a_end_ipv4_address"    />
+        <result property="zEndCustomerName"    column="z_end_customer_name"    />
+        <result property="zEndAccessDeviceInterface"    column="z_end_access_device_interface"    />
+        <result property="zEndIpv4Address"    column="z_end_ipv4_address"    />
+        <result property="provincialEquipmentConnectionInfo"    column="provincial_equipment_connection_info"    />
+        <result property="outerVlan"    column="outer_vlan"    />
+        <result property="ipv4Address"    column="ipv4_address"    />
+        <result property="baseStationId"    column="base_station_id"    />
+        <result property="stationName"    column="station_name"    />
+        <result property="baseStationNetworkMgmtVlan"    column="base_station_network_mgmt_vlan"    />
+        <result property="networkMgmtPortIpMask"    column="network_mgmt_port_ip_mask"    />
+        <result property="networkMgmtPortIpTransmissionSide"    column="network_mgmt_port_ip_transmission_side"    />
+        <result property="networkMgmtPortIpServiceSide"    column="network_mgmt_port_ip_service_side"    />
+        <result property="businessVlanNumber"    column="business_vlan_number"    />
+        <result property="businessPortIpMask"    column="business_port_ip_mask"    />
+        <result property="businessPortIpTransmissionSide"    column="business_port_ip_transmission_side"    />
+        <result property="baseStationBusinessPortIpStationSide"    column="base_station_business_port_ip_station_side"    />
+        <result property="remarks"    column="remarks"    />
+    </resultMap>
+
+    <sql id="selectIpranEquipmentVo">
+        select id, device, frame, slot, sub_card, port, sub_port, aggregation_port, transmission_area, transmission_element_id, transmission_element_name, transmission_element_mgmt_ip, access_device_type, transmission_vendor, work_order_number, service_category, service_number, circuit_id, service_type, circuit_bandwidth, a_end_customer_name, a_end_access_device_interface, sub_port_number, a_end_ipv4_address, z_end_customer_name, z_end_access_device_interface, z_end_ipv4_address, provincial_equipment_connection_info, outer_vlan, ipv4_address, base_station_id, station_name, base_station_network_mgmt_vlan, network_mgmt_port_ip_mask, network_mgmt_port_ip_transmission_side, network_mgmt_port_ip_service_side, business_vlan_number, business_port_ip_mask, business_port_ip_transmission_side, base_station_business_port_ip_station_side, remarks from ipran_equipment
+    </sql>
+
+    <select id="selectIpranEquipmentList" parameterType="IpranEquipment" resultMap="IpranEquipmentResult">
+        <include refid="selectIpranEquipmentVo"/>
+        <where>  
+            <if test="device != null  and device != ''"> and device = #{device}</if>
+            <if test="frame != null "> and frame = #{frame}</if>
+            <if test="slot != null "> and slot = #{slot}</if>
+            <if test="subCard != null "> and sub_card = #{subCard}</if>
+            <if test="port != null "> and port = #{port}</if>
+            <if test="subPort != null "> and sub_port = #{subPort}</if>
+            <if test="aggregationPort != null  and aggregationPort != ''"> and aggregation_port = #{aggregationPort}</if>
+            <if test="transmissionArea != null  and transmissionArea != ''"> and transmission_area = #{transmissionArea}</if>
+            <if test="transmissionElementId != null  and transmissionElementId != ''"> and transmission_element_id = #{transmissionElementId}</if>
+            <if test="transmissionElementName != null  and transmissionElementName != ''"> and transmission_element_name like concat('%', #{transmissionElementName}, '%')</if>
+            <if test="transmissionElementMgmtIp != null  and transmissionElementMgmtIp != ''"> and transmission_element_mgmt_ip = #{transmissionElementMgmtIp}</if>
+            <if test="accessDeviceType != null  and accessDeviceType != ''"> and access_device_type = #{accessDeviceType}</if>
+            <if test="transmissionVendor != null  and transmissionVendor != ''"> and transmission_vendor = #{transmissionVendor}</if>
+            <if test="workOrderNumber != null  and workOrderNumber != ''"> and work_order_number = #{workOrderNumber}</if>
+            <if test="serviceCategory != null  and serviceCategory != ''"> and service_category = #{serviceCategory}</if>
+            <if test="serviceNumber != null  and serviceNumber != ''"> and service_number = #{serviceNumber}</if>
+            <if test="circuitId != null  and circuitId != ''"> and circuit_id = #{circuitId}</if>
+            <if test="serviceType != null  and serviceType != ''"> and service_type = #{serviceType}</if>
+            <if test="circuitBandwidth != null  and circuitBandwidth != ''"> and circuit_bandwidth = #{circuitBandwidth}</if>
+            <if test="aEndCustomerName != null  and aEndCustomerName != ''"> and a_end_customer_name like concat('%', #{aEndCustomerName}, '%')</if>
+            <if test="aEndAccessDeviceInterface != null  and aEndAccessDeviceInterface != ''"> and a_end_access_device_interface = #{aEndAccessDeviceInterface}</if>
+            <if test="subPortNumber != null "> and sub_port_number = #{subPortNumber}</if>
+            <if test="aEndIpv4Address != null  and aEndIpv4Address != ''"> and a_end_ipv4_address = #{aEndIpv4Address}</if>
+            <if test="zEndCustomerName != null  and zEndCustomerName != ''"> and z_end_customer_name like concat('%', #{zEndCustomerName}, '%')</if>
+            <if test="zEndAccessDeviceInterface != null  and zEndAccessDeviceInterface != ''"> and z_end_access_device_interface = #{zEndAccessDeviceInterface}</if>
+            <if test="zEndIpv4Address != null  and zEndIpv4Address != ''"> and z_end_ipv4_address = #{zEndIpv4Address}</if>
+            <if test="provincialEquipmentConnectionInfo != null  and provincialEquipmentConnectionInfo != ''"> and provincial_equipment_connection_info = #{provincialEquipmentConnectionInfo}</if>
+            <if test="outerVlan != null "> and outer_vlan = #{outerVlan}</if>
+            <if test="ipv4Address != null  and ipv4Address != ''"> and ipv4_address = #{ipv4Address}</if>
+            <if test="baseStationId != null  and baseStationId != ''"> and base_station_id = #{baseStationId}</if>
+            <if test="stationName != null  and stationName != ''"> and station_name like concat('%', #{stationName}, '%')</if>
+            <if test="baseStationNetworkMgmtVlan != null "> and base_station_network_mgmt_vlan = #{baseStationNetworkMgmtVlan}</if>
+            <if test="networkMgmtPortIpMask != null  and networkMgmtPortIpMask != ''"> and network_mgmt_port_ip_mask = #{networkMgmtPortIpMask}</if>
+            <if test="networkMgmtPortIpTransmissionSide != null  and networkMgmtPortIpTransmissionSide != ''"> and network_mgmt_port_ip_transmission_side = #{networkMgmtPortIpTransmissionSide}</if>
+            <if test="networkMgmtPortIpServiceSide != null  and networkMgmtPortIpServiceSide != ''"> and network_mgmt_port_ip_service_side = #{networkMgmtPortIpServiceSide}</if>
+            <if test="businessVlanNumber != null "> and business_vlan_number = #{businessVlanNumber}</if>
+            <if test="businessPortIpMask != null  and businessPortIpMask != ''"> and business_port_ip_mask = #{businessPortIpMask}</if>
+            <if test="businessPortIpTransmissionSide != null  and businessPortIpTransmissionSide != ''"> and business_port_ip_transmission_side = #{businessPortIpTransmissionSide}</if>
+            <if test="baseStationBusinessPortIpStationSide != null  and baseStationBusinessPortIpStationSide != ''"> and base_station_business_port_ip_station_side = #{baseStationBusinessPortIpStationSide}</if>
+            <if test="remarks != null  and remarks != ''"> and remarks = #{remarks}</if>
+        </where>
+    </select>
+    
+    <select id="selectIpranEquipmentById" parameterType="Long" resultMap="IpranEquipmentResult">
+        <include refid="selectIpranEquipmentVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertIpranEquipment" parameterType="IpranEquipment" useGeneratedKeys="true" keyProperty="id">
+        insert into ipran_equipment
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="device != null">device,</if>
+            <if test="frame != null">frame,</if>
+            <if test="slot != null">slot,</if>
+            <if test="subCard != null">sub_card,</if>
+            <if test="port != null">port,</if>
+            <if test="subPort != null">sub_port,</if>
+            <if test="aggregationPort != null">aggregation_port,</if>
+            <if test="transmissionArea != null">transmission_area,</if>
+            <if test="transmissionElementId != null">transmission_element_id,</if>
+            <if test="transmissionElementName != null">transmission_element_name,</if>
+            <if test="transmissionElementMgmtIp != null">transmission_element_mgmt_ip,</if>
+            <if test="accessDeviceType != null">access_device_type,</if>
+            <if test="transmissionVendor != null">transmission_vendor,</if>
+            <if test="workOrderNumber != null">work_order_number,</if>
+            <if test="serviceCategory != null">service_category,</if>
+            <if test="serviceNumber != null">service_number,</if>
+            <if test="circuitId != null">circuit_id,</if>
+            <if test="serviceType != null">service_type,</if>
+            <if test="circuitBandwidth != null">circuit_bandwidth,</if>
+            <if test="aEndCustomerName != null">a_end_customer_name,</if>
+            <if test="aEndAccessDeviceInterface != null">a_end_access_device_interface,</if>
+            <if test="subPortNumber != null">sub_port_number,</if>
+            <if test="aEndIpv4Address != null">a_end_ipv4_address,</if>
+            <if test="zEndCustomerName != null">z_end_customer_name,</if>
+            <if test="zEndAccessDeviceInterface != null">z_end_access_device_interface,</if>
+            <if test="zEndIpv4Address != null">z_end_ipv4_address,</if>
+            <if test="provincialEquipmentConnectionInfo != null">provincial_equipment_connection_info,</if>
+            <if test="outerVlan != null">outer_vlan,</if>
+            <if test="ipv4Address != null">ipv4_address,</if>
+            <if test="baseStationId != null">base_station_id,</if>
+            <if test="stationName != null">station_name,</if>
+            <if test="baseStationNetworkMgmtVlan != null">base_station_network_mgmt_vlan,</if>
+            <if test="networkMgmtPortIpMask != null">network_mgmt_port_ip_mask,</if>
+            <if test="networkMgmtPortIpTransmissionSide != null">network_mgmt_port_ip_transmission_side,</if>
+            <if test="networkMgmtPortIpServiceSide != null">network_mgmt_port_ip_service_side,</if>
+            <if test="businessVlanNumber != null">business_vlan_number,</if>
+            <if test="businessPortIpMask != null">business_port_ip_mask,</if>
+            <if test="businessPortIpTransmissionSide != null">business_port_ip_transmission_side,</if>
+            <if test="baseStationBusinessPortIpStationSide != null">base_station_business_port_ip_station_side,</if>
+            <if test="remarks != null">remarks,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="device != null">#{device},</if>
+            <if test="frame != null">#{frame},</if>
+            <if test="slot != null">#{slot},</if>
+            <if test="subCard != null">#{subCard},</if>
+            <if test="port != null">#{port},</if>
+            <if test="subPort != null">#{subPort},</if>
+            <if test="aggregationPort != null">#{aggregationPort},</if>
+            <if test="transmissionArea != null">#{transmissionArea},</if>
+            <if test="transmissionElementId != null">#{transmissionElementId},</if>
+            <if test="transmissionElementName != null">#{transmissionElementName},</if>
+            <if test="transmissionElementMgmtIp != null">#{transmissionElementMgmtIp},</if>
+            <if test="accessDeviceType != null">#{accessDeviceType},</if>
+            <if test="transmissionVendor != null">#{transmissionVendor},</if>
+            <if test="workOrderNumber != null">#{workOrderNumber},</if>
+            <if test="serviceCategory != null">#{serviceCategory},</if>
+            <if test="serviceNumber != null">#{serviceNumber},</if>
+            <if test="circuitId != null">#{circuitId},</if>
+            <if test="serviceType != null">#{serviceType},</if>
+            <if test="circuitBandwidth != null">#{circuitBandwidth},</if>
+            <if test="aEndCustomerName != null">#{aEndCustomerName},</if>
+            <if test="aEndAccessDeviceInterface != null">#{aEndAccessDeviceInterface},</if>
+            <if test="subPortNumber != null">#{subPortNumber},</if>
+            <if test="aEndIpv4Address != null">#{aEndIpv4Address},</if>
+            <if test="zEndCustomerName != null">#{zEndCustomerName},</if>
+            <if test="zEndAccessDeviceInterface != null">#{zEndAccessDeviceInterface},</if>
+            <if test="zEndIpv4Address != null">#{zEndIpv4Address},</if>
+            <if test="provincialEquipmentConnectionInfo != null">#{provincialEquipmentConnectionInfo},</if>
+            <if test="outerVlan != null">#{outerVlan},</if>
+            <if test="ipv4Address != null">#{ipv4Address},</if>
+            <if test="baseStationId != null">#{baseStationId},</if>
+            <if test="stationName != null">#{stationName},</if>
+            <if test="baseStationNetworkMgmtVlan != null">#{baseStationNetworkMgmtVlan},</if>
+            <if test="networkMgmtPortIpMask != null">#{networkMgmtPortIpMask},</if>
+            <if test="networkMgmtPortIpTransmissionSide != null">#{networkMgmtPortIpTransmissionSide},</if>
+            <if test="networkMgmtPortIpServiceSide != null">#{networkMgmtPortIpServiceSide},</if>
+            <if test="businessVlanNumber != null">#{businessVlanNumber},</if>
+            <if test="businessPortIpMask != null">#{businessPortIpMask},</if>
+            <if test="businessPortIpTransmissionSide != null">#{businessPortIpTransmissionSide},</if>
+            <if test="baseStationBusinessPortIpStationSide != null">#{baseStationBusinessPortIpStationSide},</if>
+            <if test="remarks != null">#{remarks},</if>
+         </trim>
+    </insert>
+
+    <update id="updateIpranEquipment" parameterType="IpranEquipment">
+        update ipran_equipment
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="device != null">device = #{device},</if>
+            <if test="frame != null">frame = #{frame},</if>
+            <if test="slot != null">slot = #{slot},</if>
+            <if test="subCard != null">sub_card = #{subCard},</if>
+            <if test="port != null">port = #{port},</if>
+            <if test="subPort != null">sub_port = #{subPort},</if>
+            <if test="aggregationPort != null">aggregation_port = #{aggregationPort},</if>
+            <if test="transmissionArea != null">transmission_area = #{transmissionArea},</if>
+            <if test="transmissionElementId != null">transmission_element_id = #{transmissionElementId},</if>
+            <if test="transmissionElementName != null">transmission_element_name = #{transmissionElementName},</if>
+            <if test="transmissionElementMgmtIp != null">transmission_element_mgmt_ip = #{transmissionElementMgmtIp},</if>
+            <if test="accessDeviceType != null">access_device_type = #{accessDeviceType},</if>
+            <if test="transmissionVendor != null">transmission_vendor = #{transmissionVendor},</if>
+            <if test="workOrderNumber != null">work_order_number = #{workOrderNumber},</if>
+            <if test="serviceCategory != null">service_category = #{serviceCategory},</if>
+            <if test="serviceNumber != null">service_number = #{serviceNumber},</if>
+            <if test="circuitId != null">circuit_id = #{circuitId},</if>
+            <if test="serviceType != null">service_type = #{serviceType},</if>
+            <if test="circuitBandwidth != null">circuit_bandwidth = #{circuitBandwidth},</if>
+            <if test="aEndCustomerName != null">a_end_customer_name = #{aEndCustomerName},</if>
+            <if test="aEndAccessDeviceInterface != null">a_end_access_device_interface = #{aEndAccessDeviceInterface},</if>
+            <if test="subPortNumber != null">sub_port_number = #{subPortNumber},</if>
+            <if test="aEndIpv4Address != null">a_end_ipv4_address = #{aEndIpv4Address},</if>
+            <if test="zEndCustomerName != null">z_end_customer_name = #{zEndCustomerName},</if>
+            <if test="zEndAccessDeviceInterface != null">z_end_access_device_interface = #{zEndAccessDeviceInterface},</if>
+            <if test="zEndIpv4Address != null">z_end_ipv4_address = #{zEndIpv4Address},</if>
+            <if test="provincialEquipmentConnectionInfo != null">provincial_equipment_connection_info = #{provincialEquipmentConnectionInfo},</if>
+            <if test="outerVlan != null">outer_vlan = #{outerVlan},</if>
+            <if test="ipv4Address != null">ipv4_address = #{ipv4Address},</if>
+            <if test="baseStationId != null">base_station_id = #{baseStationId},</if>
+            <if test="stationName != null">station_name = #{stationName},</if>
+            <if test="baseStationNetworkMgmtVlan != null">base_station_network_mgmt_vlan = #{baseStationNetworkMgmtVlan},</if>
+            <if test="networkMgmtPortIpMask != null">network_mgmt_port_ip_mask = #{networkMgmtPortIpMask},</if>
+            <if test="networkMgmtPortIpTransmissionSide != null">network_mgmt_port_ip_transmission_side = #{networkMgmtPortIpTransmissionSide},</if>
+            <if test="networkMgmtPortIpServiceSide != null">network_mgmt_port_ip_service_side = #{networkMgmtPortIpServiceSide},</if>
+            <if test="businessVlanNumber != null">business_vlan_number = #{businessVlanNumber},</if>
+            <if test="businessPortIpMask != null">business_port_ip_mask = #{businessPortIpMask},</if>
+            <if test="businessPortIpTransmissionSide != null">business_port_ip_transmission_side = #{businessPortIpTransmissionSide},</if>
+            <if test="baseStationBusinessPortIpStationSide != null">base_station_business_port_ip_station_side = #{baseStationBusinessPortIpStationSide},</if>
+            <if test="remarks != null">remarks = #{remarks},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteIpranEquipmentById" parameterType="Long">
+        delete from ipran_equipment where id = #{id}
+    </delete>
+
+    <delete id="deleteIpranEquipmentByIds" parameterType="String">
+        delete from ipran_equipment where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

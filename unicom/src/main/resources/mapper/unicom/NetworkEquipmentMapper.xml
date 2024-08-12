@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.unicom.mapper.NetworkEquipmentMapper">
+    
+    <resultMap type="NetworkEquipment" id="NetworkEquipmentResult">
+        <result property="id"    column="id"    />
+        <result property="district"    column="district"    />
+        <result property="deviceName"    column="device_name"    />
+        <result property="model"    column="model"    />
+        <result property="managementIp1"    column="management_ip1"    />
+        <result property="managementIp2"    column="management_ip2"    />
+        <result property="frame"    column="frame"    />
+        <result property="slot"    column="slot"    />
+        <result property="subCard"    column="sub_card"    />
+        <result property="port"    column="port"    />
+        <result property="subPort"    column="sub_port"    />
+        <result property="serviceCategory"    column="service_category"    />
+        <result property="serviceCode"    column="service_code"    />
+        <result property="serviceStatus"    column="service_status"    />
+        <result property="bandwidth"    column="bandwidth"    />
+        <result property="zSideModel"    column="z_side_model"    />
+        <result property="customerName"    column="customer_name"    />
+        <result property="outerVlanGroup"    column="outer_vlan_group"    />
+        <result property="outerVlanValue"    column="outer_vlan_value"    />
+        <result property="innerVlanGroup"    column="inner_vlan_group"    />
+        <result property="innerVlanValue"    column="inner_vlan_value"    />
+        <result property="requestedIpCount"    column="requested_ip_count"    />
+        <result property="gatewayIp"    column="gateway_ip"    />
+        <result property="businessIp"    column="business_ip"    />
+        <result property="serialNumber"    column="serial_number"    />
+        <result property="vpnInstanceName"    column="vpn_instance_name"    />
+        <result property="vpnRd"    column="vpn_rd"    />
+        <result property="vpnRt"    column="vpn_rt"    />
+        <result property="userInterconnectAddress"    column="user_interconnect_address"    />
+        <result property="orderNumber"    column="order_number"    />
+        <result property="remarks"    column="remarks"    />
+    </resultMap>
+
+    <sql id="selectNetworkEquipmentVo">
+        select id, district, device_name, model, management_ip1, management_ip2, frame, slot, sub_card, port, sub_port, service_category, service_code, service_status, bandwidth, z_side_model, customer_name, outer_vlan_group, outer_vlan_value, inner_vlan_group, inner_vlan_value, requested_ip_count, gateway_ip, business_ip, serial_number, vpn_instance_name, vpn_rd, vpn_rt, user_interconnect_address, order_number, remarks from network_equipment
+    </sql>
+
+    <select id="selectNetworkEquipmentList" parameterType="NetworkEquipment" resultMap="NetworkEquipmentResult">
+        <include refid="selectNetworkEquipmentVo"/>
+        <where>  
+            <if test="district != null  and district != ''"> and district = #{district}</if>
+            <if test="deviceName != null  and deviceName != ''"> and device_name like concat('%', #{deviceName}, '%')</if>
+            <if test="model != null  and model != ''"> and model = #{model}</if>
+            <if test="managementIp1 != null  and managementIp1 != ''"> and management_ip1 = #{managementIp1}</if>
+            <if test="managementIp2 != null  and managementIp2 != ''"> and management_ip2 = #{managementIp2}</if>
+            <if test="frame != null "> and frame = #{frame}</if>
+            <if test="slot != null "> and slot = #{slot}</if>
+            <if test="subCard != null "> and sub_card = #{subCard}</if>
+            <if test="port != null "> and port = #{port}</if>
+            <if test="subPort != null "> and sub_port = #{subPort}</if>
+            <if test="serviceCategory != null "> and service_category = #{serviceCategory}</if>
+            <if test="serviceCode != null  and serviceCode != ''"> and service_code = #{serviceCode}</if>
+            <if test="serviceStatus != null "> and service_status = #{serviceStatus}</if>
+            <if test="bandwidth != null "> and bandwidth = #{bandwidth}</if>
+            <if test="zSideModel != null  and zSideModel != ''"> and z_side_model = #{zSideModel}</if>
+            <if test="customerName != null  and customerName != ''"> and customer_name like concat('%', #{customerName}, '%')</if>
+            <if test="outerVlanGroup != null  and outerVlanGroup != ''"> and outer_vlan_group = #{outerVlanGroup}</if>
+            <if test="outerVlanValue != null  and outerVlanValue != ''"> and outer_vlan_value = #{outerVlanValue}</if>
+            <if test="innerVlanGroup != null  and innerVlanGroup != ''"> and inner_vlan_group = #{innerVlanGroup}</if>
+            <if test="innerVlanValue != null  and innerVlanValue != ''"> and inner_vlan_value = #{innerVlanValue}</if>
+            <if test="requestedIpCount != null  and requestedIpCount != ''"> and requested_ip_count = #{requestedIpCount}</if>
+            <if test="gatewayIp != null  and gatewayIp != ''"> and gateway_ip = #{gatewayIp}</if>
+            <if test="businessIp != null  and businessIp != ''"> and business_ip = #{businessIp}</if>
+            <if test="serialNumber != null  and serialNumber != ''"> and serial_number = #{serialNumber}</if>
+            <if test="vpnInstanceName != null  and vpnInstanceName != ''"> and vpn_instance_name like concat('%', #{vpnInstanceName}, '%')</if>
+            <if test="vpnRd != null  and vpnRd != ''"> and vpn_rd = #{vpnRd}</if>
+            <if test="vpnRt != null  and vpnRt != ''"> and vpn_rt = #{vpnRt}</if>
+            <if test="userInterconnectAddress != null  and userInterconnectAddress != ''"> and user_interconnect_address = #{userInterconnectAddress}</if>
+            <if test="orderNumber != null  and orderNumber != ''"> and order_number = #{orderNumber}</if>
+            <if test="remarks != null  and remarks != ''"> and remarks = #{remarks}</if>
+        </where>
+    </select>
+    
+    <select id="selectNetworkEquipmentById" parameterType="Long" resultMap="NetworkEquipmentResult">
+        <include refid="selectNetworkEquipmentVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertNetworkEquipment" parameterType="NetworkEquipment" useGeneratedKeys="true" keyProperty="id">
+        insert into network_equipment
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="district != null">district,</if>
+            <if test="deviceName != null">device_name,</if>
+            <if test="model != null">model,</if>
+            <if test="managementIp1 != null">management_ip1,</if>
+            <if test="managementIp2 != null">management_ip2,</if>
+            <if test="frame != null">frame,</if>
+            <if test="slot != null">slot,</if>
+            <if test="subCard != null">sub_card,</if>
+            <if test="port != null">port,</if>
+            <if test="subPort != null">sub_port,</if>
+            <if test="serviceCategory != null">service_category,</if>
+            <if test="serviceCode != null">service_code,</if>
+            <if test="serviceStatus != null">service_status,</if>
+            <if test="bandwidth != null">bandwidth,</if>
+            <if test="zSideModel != null">z_side_model,</if>
+            <if test="customerName != null">customer_name,</if>
+            <if test="outerVlanGroup != null">outer_vlan_group,</if>
+            <if test="outerVlanValue != null">outer_vlan_value,</if>
+            <if test="innerVlanGroup != null">inner_vlan_group,</if>
+            <if test="innerVlanValue != null">inner_vlan_value,</if>
+            <if test="requestedIpCount != null">requested_ip_count,</if>
+            <if test="gatewayIp != null">gateway_ip,</if>
+            <if test="businessIp != null">business_ip,</if>
+            <if test="serialNumber != null">serial_number,</if>
+            <if test="vpnInstanceName != null">vpn_instance_name,</if>
+            <if test="vpnRd != null">vpn_rd,</if>
+            <if test="vpnRt != null">vpn_rt,</if>
+            <if test="userInterconnectAddress != null">user_interconnect_address,</if>
+            <if test="orderNumber != null">order_number,</if>
+            <if test="remarks != null">remarks,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="district != null">#{district},</if>
+            <if test="deviceName != null">#{deviceName},</if>
+            <if test="model != null">#{model},</if>
+            <if test="managementIp1 != null">#{managementIp1},</if>
+            <if test="managementIp2 != null">#{managementIp2},</if>
+            <if test="frame != null">#{frame},</if>
+            <if test="slot != null">#{slot},</if>
+            <if test="subCard != null">#{subCard},</if>
+            <if test="port != null">#{port},</if>
+            <if test="subPort != null">#{subPort},</if>
+            <if test="serviceCategory != null">#{serviceCategory},</if>
+            <if test="serviceCode != null">#{serviceCode},</if>
+            <if test="serviceStatus != null">#{serviceStatus},</if>
+            <if test="bandwidth != null">#{bandwidth},</if>
+            <if test="zSideModel != null">#{zSideModel},</if>
+            <if test="customerName != null">#{customerName},</if>
+            <if test="outerVlanGroup != null">#{outerVlanGroup},</if>
+            <if test="outerVlanValue != null">#{outerVlanValue},</if>
+            <if test="innerVlanGroup != null">#{innerVlanGroup},</if>
+            <if test="innerVlanValue != null">#{innerVlanValue},</if>
+            <if test="requestedIpCount != null">#{requestedIpCount},</if>
+            <if test="gatewayIp != null">#{gatewayIp},</if>
+            <if test="businessIp != null">#{businessIp},</if>
+            <if test="serialNumber != null">#{serialNumber},</if>
+            <if test="vpnInstanceName != null">#{vpnInstanceName},</if>
+            <if test="vpnRd != null">#{vpnRd},</if>
+            <if test="vpnRt != null">#{vpnRt},</if>
+            <if test="userInterconnectAddress != null">#{userInterconnectAddress},</if>
+            <if test="orderNumber != null">#{orderNumber},</if>
+            <if test="remarks != null">#{remarks},</if>
+         </trim>
+    </insert>
+
+    <update id="updateNetworkEquipment" parameterType="NetworkEquipment">
+        update network_equipment
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="district != null">district = #{district},</if>
+            <if test="deviceName != null">device_name = #{deviceName},</if>
+            <if test="model != null">model = #{model},</if>
+            <if test="managementIp1 != null">management_ip1 = #{managementIp1},</if>
+            <if test="managementIp2 != null">management_ip2 = #{managementIp2},</if>
+            <if test="frame != null">frame = #{frame},</if>
+            <if test="slot != null">slot = #{slot},</if>
+            <if test="subCard != null">sub_card = #{subCard},</if>
+            <if test="port != null">port = #{port},</if>
+            <if test="subPort != null">sub_port = #{subPort},</if>
+            <if test="serviceCategory != null">service_category = #{serviceCategory},</if>
+            <if test="serviceCode != null">service_code = #{serviceCode},</if>
+            <if test="serviceStatus != null">service_status = #{serviceStatus},</if>
+            <if test="bandwidth != null">bandwidth = #{bandwidth},</if>
+            <if test="zSideModel != null">z_side_model = #{zSideModel},</if>
+            <if test="customerName != null">customer_name = #{customerName},</if>
+            <if test="outerVlanGroup != null">outer_vlan_group = #{outerVlanGroup},</if>
+            <if test="outerVlanValue != null">outer_vlan_value = #{outerVlanValue},</if>
+            <if test="innerVlanGroup != null">inner_vlan_group = #{innerVlanGroup},</if>
+            <if test="innerVlanValue != null">inner_vlan_value = #{innerVlanValue},</if>
+            <if test="requestedIpCount != null">requested_ip_count = #{requestedIpCount},</if>
+            <if test="gatewayIp != null">gateway_ip = #{gatewayIp},</if>
+            <if test="businessIp != null">business_ip = #{businessIp},</if>
+            <if test="serialNumber != null">serial_number = #{serialNumber},</if>
+            <if test="vpnInstanceName != null">vpn_instance_name = #{vpnInstanceName},</if>
+            <if test="vpnRd != null">vpn_rd = #{vpnRd},</if>
+            <if test="vpnRt != null">vpn_rt = #{vpnRt},</if>
+            <if test="userInterconnectAddress != null">user_interconnect_address = #{userInterconnectAddress},</if>
+            <if test="orderNumber != null">order_number = #{orderNumber},</if>
+            <if test="remarks != null">remarks = #{remarks},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteNetworkEquipmentById" parameterType="Long">
+        delete from network_equipment where id = #{id}
+    </delete>
+
+    <delete id="deleteNetworkEquipmentByIds" parameterType="String">
+        delete from network_equipment where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
