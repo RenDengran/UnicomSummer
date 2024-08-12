@@ -199,7 +199,6 @@
         <module>ruoyi-quartz</module>
         <module>ruoyi-generator</module>
         <module>ruoyi-common</module>
-        <module>unicom</module>
     </modules>
     <packaging>pom</packaging>
 
